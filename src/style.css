@@ -40,6 +40,12 @@ ul {
   list-style: none;
   padding-left: 0;
 }
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -104,4 +110,31 @@ p {
 .navbar__menu__item:hover {
     background-color : var(--color-green);
     
+}
+
+/* Home */
+#home {
+  background: center/cover no-repeat url('images/background.png') ;
+  padding: 40px;
+  text-align: center;
+  position: relative;  
+}
+
+.home__avatar {
+  width: 250px;
+  height: 350px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white)
+}
+.home__title,
+.home__description {
+  color : var(--color-white)
+}
+.home__contact{
+  font-size: var(--font-regular);
+  font-weight: var(--font-small);
+  margin: 24px;
+  padding: 8px 12px;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
 }
