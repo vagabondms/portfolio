@@ -393,6 +393,8 @@ p {
 /* Contact */
 #contact {
   background-color: var(--color-light-orange);
+  padding: 50px;
+  text-align: center;
 }
 .contact__title {
   margin: 32px 0;
