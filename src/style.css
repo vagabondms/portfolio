@@ -43,8 +43,10 @@ ul {
   padding-left: 0;
 }
 a {
+  text-decoration: none;
   color: var(--color-white);
 }
+
 button {
   background-color: transparent;
   cursor: pointer;
@@ -386,4 +388,32 @@ p {
 }
 .testimonial__speech-bubble a {
   color: var(--color-light-orange);
+}
+
+/* Contact */
+#contact {
+  background-color: var(--color-light-orange);
+}
+.contact__title {
+  margin: 32px 0;
+}
+.contact__email {
+  margin: 15px 0;
+}
+.contact__title,
+.contact__email {
+  color: var(--color-white);
+}
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+}
+
+.contact__links i {
+  transition: all ease-in var(--animation-duration);
+}
+
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-green);
 }
