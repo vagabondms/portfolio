@@ -99,6 +99,15 @@ p {
   background-color: var(--color-light-green);
   padding: 16px;
 }
+
+.navbar__toggle--btn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: var(--font-medium);
+  color: var(--color-white);
+  display: none;
+}
 .navbar__menu {
   display: flex;
 }
@@ -311,6 +320,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 10px;
+  flex-grow: 1;
 }
 .project__img {
   max-width: 100%;
@@ -418,4 +428,45 @@ p {
 .contact__links i:hover {
   transform: scale(1.1);
   color: var(--color-green);
+}
+
+@media screen and (max-width: 768px) {
+  .navbar__toggle--btn {
+    display: block;
+  }
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar__menu {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    display: none;
+  }
+  .about__majors {
+    flex-direction: column;
+  }
+  .major {
+    margin-bottom: 30px;
+  }
+  .skillset {
+    flex-direction: column;
+  }
+  .testimonial {
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    margin-top: 80px;
+  }
+  .testimonial__picture {
+    position: absolute;
+    margin: 0px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    top: -50px;
+    left: -50px;
+    width: 80px;
+    height: 80px;
+  }
 }
