@@ -1,6 +1,9 @@
 "use strict";
 
 const navbar = document.querySelector("#navbar");
+const navbarMenu = document.querySelector(".navbar__menu");
+const contactMe = document.querySelector(".home__contact");
+const contact = document.querySelector("#contact");
 
 document.addEventListener("scroll", () => {
   const scrollPosition = window.scrollY;
@@ -12,12 +15,30 @@ document.addEventListener("scroll", () => {
   }
 });
 
-navbar.addEventListener("click", (e) => {
-  const element = document.querySelector(`#${e.target.dataset.id}`);
+const scrollTo = (position) => {
   window.scrollTo({
-    top: element.getBoundingClientRect().top + window.scrollY - 70,
+    top: position,
     behavior: "smooth",
   });
+};
 
-  // window.scrollTo(0, position);
+navbarMenu.addEventListener("click", (e) => {
+  const element = document.querySelector(`#${e.target.dataset.id}`);
+  if (element) {
+    const position = element.getBoundingClientRect().top + window.scrollY - 70;
+    scrollTo(position);
+  }
+  return;
+});
+
+contactMe.addEventListener("click", (e) => {
+  const position = contact.getBoundingClientRect().top + window.scrollY;
+  scrollTo(position);
+});
+
+const homeContainer = document.querySelector(".home__container");
+document.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const homeHeight = homeContainer.getBoundingClientRect().height;
+  homeContainer.style.opacity = 1 - scrollY / homeHeight;
 });
