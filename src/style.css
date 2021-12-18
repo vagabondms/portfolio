@@ -96,8 +96,16 @@ p {
   justify-content: space-between;
   align-items: center;
   color: var(--color-white);
+  background-color: transparent;
+  padding: 16px 30px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  transition: all ease-in var(--animation-duration);
+}
+#navbar.navbar--dark {
   background-color: var(--color-light-green);
-  padding: 16px;
+  padding: 5px 15px;
 }
 
 .navbar__toggle--btn {
@@ -142,6 +150,7 @@ p {
   position: relative;
   text-align: center;
   padding: 50px;
+  padding-top: 120px;
 }
 
 .home__avatar {
@@ -223,7 +232,6 @@ p {
 /* Skill */
 #skills {
   background-color: var(--color-light-pink);
-  padding: 50px;
   text-align: center;
 }
 .skillset {
@@ -367,10 +375,6 @@ p {
 #testimonials {
   background-color: var(--color-light-white);
   text-align: center;
-  padding: 50px;
-}
-.testimonials {
-  margin: 40px;
 }
 
 .testimonial {
