@@ -434,6 +434,27 @@ p {
   color: var(--color-green);
 }
 
+.arrow-up {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-size: 30px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-pink);
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease-in var(--animation-duration);
+}
+.arrow--dark {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media screen and (max-width: 768px) {
   .navbar__toggle--btn {
     display: block;

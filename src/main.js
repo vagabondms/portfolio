@@ -4,7 +4,7 @@ const navbar = document.querySelector("#navbar");
 const navbarMenu = document.querySelector(".navbar__menu");
 const contactMe = document.querySelector(".home__contact");
 const contact = document.querySelector("#contact");
-
+const arrow = document.querySelector(".arrow-up");
 document.addEventListener("scroll", () => {
   const scrollPosition = window.scrollY;
   const halfOfNavHeight = navbar.getBoundingClientRect().height / 2;
@@ -41,4 +41,15 @@ document.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   const homeHeight = homeContainer.getBoundingClientRect().height;
   homeContainer.style.opacity = 1 - scrollY / homeHeight;
+});
+document.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
+  if (scrollPosition > 300) {
+    arrow.classList.add("arrow--dark");
+  } else {
+    arrow.classList.remove("arrow--dark");
+  }
+});
+arrow.addEventListener("click", () => {
+  scrollTo(0);
 });
