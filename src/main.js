@@ -23,28 +23,6 @@ document.addEventListener("scroll", () => {
   }
 });
 
-const scrollTo = (position) => {
-  window.scrollTo({
-    top: position,
-    behavior: "smooth",
-  });
-};
-
-navbarMenu.addEventListener("click", (e) => {
-  const element = document.querySelector(`#${e.target.dataset.id}`);
-  if (element) {
-    const position = element.getBoundingClientRect().top + window.scrollY - 70;
-    navbarMenu.classList.remove("active");
-    scrollTo(position);
-  }
-  return;
-});
-
-contactMe.addEventListener("click", (e) => {
-  const position = contact.getBoundingClientRect().top + window.scrollY;
-  scrollTo(position);
-});
-
 const homeContainer = document.querySelector(".home__container");
 document.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
@@ -58,9 +36,6 @@ document.addEventListener("scroll", () => {
   } else {
     arrow.classList.remove("arrow--dark");
   }
-});
-arrow.addEventListener("click", () => {
-  scrollTo(0);
 });
 
 works.addEventListener("click", (e) => {
@@ -89,34 +64,103 @@ works.addEventListener("click", (e) => {
   target.classList.add("active");
 });
 
-const home = document.querySelector("section#home");
-const about = document.querySelector("section#about");
-const skills = document.querySelector("section#skills");
-const myWork = document.querySelector("section#myWork");
-const testimonials = document.querySelector("section#testimonials");
-
-document.addEventListener("scroll", (e) => {
-  const scrollPosition = window.scrollY;
-  console.log(window.scrollY);
-  const positions = [home, about, skills, myWork, testimonials].map(
-    (position) => {
-      return position.getBoundingClientRect().top - 70 + window.scrollY;
-    }
-  );
-
-  const current =
-    [...positions, positions[4] + 30].filter((position) => {
-      return position <= scrollPosition;
-    }).length - 1;
-
-  const active = document.querySelector(".navbar__menu__item.active");
-  if (active) {
-    active.classList.remove("active");
-  }
-  const btns = document.querySelectorAll(".navbar__menu__item");
-  btns[current].classList.add("active");
-});
-
 navbarToggleBtn.addEventListener("click", () => {
   navbarMenu.classList.toggle("active");
+});
+
+/*
+ * scroll interactions
+ */
+
+const ids = [
+  "#home",
+  "#about",
+  "#skills",
+  "#myWork",
+  "#testimonials",
+  "#contact",
+];
+
+const sections = ids.map((id) => document.querySelector(id));
+const navbarItems = ids.map((id) =>
+  document.querySelector(`.navbar__menu__item[data-id='${id}']`)
+);
+
+let selectedNavIndex = 0;
+let selectedNavItem = navbarItems[0];
+
+const selectNavItem = (selected) => {
+  selectedNavItem.classList.remove("active");
+  selectedNavItem = selected;
+  selectedNavItem.classList.add("active");
+};
+
+const observerCallback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting && entry.intersectionRatio > 0) {
+      const index = ids.indexOf(`#${entry.target.id}`);
+      if (entry.boundingClientRect.y > 0) {
+        selectedNavIndex = index - 1;
+      } else {
+        selectedNavIndex = index + 1;
+      }
+    }
+  });
+};
+
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.3,
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach((section) => {
+  observer.observe(section);
+});
+document.addEventListener("wheel", (e) => {
+  if (window.scrollY === 0) {
+    selectedNavIndex = 0;
+  } else if (
+    Math.round(window.scrollY + window.innerHeight) >=
+    document.body.clientHeight
+  ) {
+    selectedNavIndex = navbarItems.length - 1;
+  }
+  const selected = navbarItems[selectedNavIndex];
+  selectNavItem(selected);
+});
+
+const scrollTo = (position) => {
+  window.scrollTo({
+    top: position,
+    behavior: "smooth",
+  });
+};
+
+arrow.addEventListener("click", () => {
+  scrollTo(0);
+  selectedNavIndex = 0;
+  const selected = navbarItems[selectedNavIndex];
+  selectNavItem(selected);
+});
+
+navbarMenu.addEventListener("click", (e) => {
+  document
+    .querySelector(".navbar__menu__item.active")
+    .classList.remove("active");
+  e.target.classList.add("active");
+  const element = document.querySelector(`${e.target.dataset.id}`);
+  if (element) {
+    const position = element.getBoundingClientRect().top + window.scrollY;
+    navbarMenu.classList.remove("active");
+    scrollTo(position);
+    return;
+  }
+  return;
+});
+
+contactMe.addEventListener("click", (e) => {
+  const position = contact.getBoundingClientRect().top + window.scrollY;
+  scrollTo(position);
 });
