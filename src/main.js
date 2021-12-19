@@ -163,4 +163,7 @@ navbarMenu.addEventListener("click", (e) => {
 contactMe.addEventListener("click", (e) => {
   const position = contact.getBoundingClientRect().top + window.scrollY;
   scrollTo(position);
+  selectedNavIndex = navbarItems.length - 1;
+  const selected = navbarItems[selectedNavIndex];
+  selectNavItem(selected);
 });
