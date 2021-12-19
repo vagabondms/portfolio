@@ -146,10 +146,9 @@ arrow.addEventListener("click", () => {
 });
 
 navbarMenu.addEventListener("click", (e) => {
-  document
-    .querySelector(".navbar__menu__item.active")
-    .classList.remove("active");
-  e.target.classList.add("active");
+  const index = ids.indexOf(e.target.dataset.id);
+  selectedNavIndex = index;
+  selectNavItem(navbarItems[selectedNavIndex]);
   const element = document.querySelector(`${e.target.dataset.id}`);
   if (element) {
     const position = element.getBoundingClientRect().top + window.scrollY;
