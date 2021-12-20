@@ -42,7 +42,7 @@ document.addEventListener("scroll", () => {
 
 /*
   TODO scroll시 Home 내부 contents들을 투명하게 -> 모든 내용을 투명하게로 변경
-
+  참고 : https://mommoo.tistory.com/85
  */
 
 document.addEventListener("scroll", () => {
