@@ -103,22 +103,23 @@ p {
   width: 100%;
   transition: all ease-in var(--animation-duration);
 }
+
 #navbar.navbar--dark {
   background-color: var(--color-light-green);
-  padding: 5px 15px;
+  padding: 10px 20px;
 }
 
 .navbar__toggle--btn {
   position: absolute;
-  top: 17px;
+  top: 10px;
   right: 10px;
-  font-size: var(--font-medium);
+  font-size: var(--font-large);
   color: var(--color-white);
   display: none;
   transition: all ease-in var(--animation-duration);
 }
-.navbar__toggle--btn.toggle--dark {
-  top: 8px;
+.navbar__toggle--btn.toggle--small {
+  top: 5px;
   right: 5px;
 }
 
@@ -494,14 +495,21 @@ p {
     flex-direction: column;
     width: 100%;
     text-align: center;
-    display: none;
   }
 
   .navbar__menu.active {
     display: block;
-    animation: growDown 300ms ease-in-out forwards;
+    animation: growDown 300ms ease-out forwards;
     transform-origin: top center;
   }
+  .navbar__menu.shrink {
+    animation: growUp 300ms ease-out forwards;
+    transform-origin: top center;
+  }
+  .navbar__menu.hidden {
+    display: none;
+  }
+
   .section {
     padding: 16px;
     padding-top: 25px;
@@ -553,5 +561,17 @@ p {
   100% {
     transform: scaleY(1);
     height: 230px;
+  }
+}
+@keyframes growUp {
+  0% {
+    transform: scaleY(1);
+    height: 230px;
+  }
+  100% {
+    transform: scaleY(0);
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
   }
 }
